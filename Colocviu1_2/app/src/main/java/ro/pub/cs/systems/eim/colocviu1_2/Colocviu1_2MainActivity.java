@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class Colocviu1_2MainActivity extends AppCompatActivity {
-
+    EditText allTerms;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +20,7 @@ public class Colocviu1_2MainActivity extends AppCompatActivity {
 
         Button buttonAdd = (Button) findViewById(R.id.buttonAdd);
         EditText nextTerm = (EditText) findViewById(R.id.nextTerm);
-        EditText allTerms = (EditText) findViewById(R.id.allTerms);
+        allTerms = (EditText) findViewById(R.id.allTerms);
         Button compute = (Button) findViewById(R.id.buttonCompute);
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
@@ -53,30 +53,24 @@ public class Colocviu1_2MainActivity extends AppCompatActivity {
                 Intent intent = new Intent("ro.pub.cs.systems.eim.colocviu1_2.Colocviu1_2SecondaryActivity");
                 intent.putExtra("colcviuKey", allTerms.getText().toString());
                 startActivityForResult(intent, 2017);
-
-
             }
         });
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
-        switch (requestCode) {
-            case 2017:
-                if (resultCode == Activity.RESULT_OK) {
-                    Bundle data = intent.getExtras();
-                    Context context = getApplicationContext();
-                    CharSequence text = data.toString();
-                    int duration = Toast.LENGTH_SHORT;
+        if (requestCode == 2017) {
+            if (resultCode == Activity.RESULT_OK) {
+                Bundle data = intent.getExtras();
+                Context context = getApplicationContext();
+                CharSequence text = data.get("colcviuKey").toString();
+                int duration = Toast.LENGTH_SHORT;
 
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+                allTerms.setText(text);
+            }
 
-
-                }
-                break;
-
-            // process other request codes
         }
     }
 }
