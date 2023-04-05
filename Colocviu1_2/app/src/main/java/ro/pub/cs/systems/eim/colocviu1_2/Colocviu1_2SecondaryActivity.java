@@ -16,7 +16,7 @@ public class Colocviu1_2SecondaryActivity extends AppCompatActivity {
         if (data != null) {
             int res = compute(data.toString());
             Intent intentToParent = new Intent();
-            intentToParent.putExtra("ro.pub.cs.systems.eim.lab04.anotherKey", res);
+            intentToParent.putExtra("colcviuKey", res);
             setResult(RESULT_OK, intentToParent);
             finish();
         }
@@ -25,7 +25,7 @@ public class Colocviu1_2SecondaryActivity extends AppCompatActivity {
         String[] tokens = terms.split(" +");
         int res = 0;
         for (String s : tokens) {
-            res += Integer.valueOf(s);
+            res += Integer.parseInt(s);
         }
         return res;
     }

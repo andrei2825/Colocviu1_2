@@ -51,7 +51,7 @@ public class Colocviu1_2MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent("ro.pub.cs.systems.eim.colocviu1_2.Colocviu1_2SecondaryActivity");
-                intent.putExtra("ro.pub.cs.systems.eim.eim.someKey", allTerms.getText().toString());
+                intent.putExtra("colcviuKey", allTerms.getText().toString());
                 startActivityForResult(intent, 2017);
 
 
